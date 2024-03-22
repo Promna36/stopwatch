@@ -1,5 +1,5 @@
 # A simple stopwatch
-Steps
+''' Steps '''
 - First open index.html in browser
 - Press start to start
 - Press pause to pause
