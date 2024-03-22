@@ -6,33 +6,48 @@ var timeString = ""
 var time = document.getElementById("time")
 var startBtn = document.getElementById("start")
 var pauseBtn = document.getElementById("pause")
-const start = () => {
+var resetBtn = document.getElementById("reset")
+var count
+const counter = () => {
     startBtn.hidden = true
     pauseBtn.hidden = false
-    setInterval(() => {
-        if(milisecond == 100){
-            milisecond = 0
-            sec++
-        }else if(sec == 60){
-            sec = 0
-            min++
-        }else if(min == 60){
-            min = 0
-            hr++
+    count = setInterval(() => {
+        if(startBtn.hidden == true){
+            if(milisecond == 100){
+                milisecond = 0
+                sec++
+            }else if(sec == 60){
+                sec = 0
+                min++
+            }else if(min == 60){
+                min = 0
+                hr++
+            }else{
+                milisecond++
+            }
+            timeString = hr+":"+min+":"+sec+":"+milisecond
+            time.innerText = timeString
         }else{
-            milisecond++
+
         }
-        timeString = hr+":"+min+":"+sec+":"+milisecond
-        time.innerText = timeString
     }, 10)
 }
-const pause = () => {
+startBtn.addEventListener('click',counter)
+const paused = () => {
     startBtn.hidden = false
     pauseBtn.hidden = true
-    setInterval(() => {
-        milisecond--
-    }, 10)
+    time.innerText = timeString
+    clearInterval(count)
 }
-const reset = () => {
-    location.reload()
-}
+pauseBtn.addEventListener('click', paused)
+
+resetBtn.addEventListener('click', () => {
+    startBtn.hidden = false
+    pauseBtn.hidden = true
+    time.innerText = "0:0:0:0"
+    hr = 0
+    min = 0
+    sec = 0
+    milisecond = 0
+    clearInterval(count)
+})
