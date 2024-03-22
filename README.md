@@ -4,4 +4,4 @@ Steps
 - Press start to start
 - Press pause to pause
 - Press reset to reset
-- Milisecond timer may sometimes fluctuate
+- Milisecond timer may fluctuate very rarely
